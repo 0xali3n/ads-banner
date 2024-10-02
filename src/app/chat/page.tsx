@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Edit2, Loader2, Upload } from 'lucide-react'
 import { useRef, useState } from 'react'
 
-export default function ImageFX() {
+export default function BannerCraft() {
     const [prompt, setPrompt] = useState("Fuzzy polar bear plushie sleeping in a minimalist modern apartment bed")
     const [images, setImages] = useState<string[]>([])
     const [uploadedImages, setUploadedImages] = useState<string[]>([])
@@ -29,10 +29,11 @@ export default function ImageFX() {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 3000))
         const generatedImages = Array(4).fill('').map((_, i) => `/placeholder.svg?height=512&width=512&text=Generated+Image+${i + 1}`)
-        generatedImages[0] = 'i1.jpeg'
-        generatedImages[1] = 'i2.jpeg'
-        generatedImages[2] = 'i3.jpeg'
-        generatedImages[3] = 'i4.jpeg'
+        generatedImages[0] = 'nestleind1.jpg'
+        generatedImages[1] = 'nestleind2.jpg'
+        generatedImages[2] = 'nestleind3.jpg'
+        generatedImages[3] = 'nestleind4.jpg'
+
         setImages(generatedImages)
         setIsLoading(false)
         setTokensConsumed(prev => prev + getRandomInt(100, 500))
@@ -44,7 +45,7 @@ export default function ImageFX() {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 3000))
         const generatedImages = Array(4).fill('').map((_, i) => `/placeholder.svg?height=512&width=512&text=Lucky+Image+${i + 1}`)
-        generatedImages[0] = 'i1.jpeg'
+        generatedImages[0] = 'nestleind1.jpg'
         generatedImages[1] = 'i2.jpeg'
         generatedImages[2] = 'i3.jpeg'
         generatedImages[3] = 'i4.jpeg'
@@ -75,7 +76,7 @@ export default function ImageFX() {
 
     return (
         <div className="min-h-screen bg-background text-foreground p-4">
-            <h1 className="text-2xl font-bold mb-4">ImageFX</h1>
+            <h1 className="text-2xl font-bold mb-4">BannerCraft</h1>
             <div className="flex flex-col md:flex-row gap-4">
                 <div className="w-full md:w-1/2">
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -102,7 +103,7 @@ export default function ImageFX() {
                             </div>
                             <div className="grid grid-cols-2 gap-2 mt-2">
                                 {uploadedImages.map((img, index) => (
-                                    <img key={index} src={img} alt={`Uploaded image ${index + 1}`} className="w-full h-32 object-cover rounded" />
+                                    <img key={index} src={img} alt={`Uploaded image ${index + 1}`} className=" h-64 object-fit rounded" />
                                 ))}
                             </div>
                         </div>

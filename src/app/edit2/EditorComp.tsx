@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Edit2, Loader2 } from 'lucide-react'
 import { useState } from 'react'
 
-export default function ImageFX() {
+export default function BannerCraft() {
     const [prompt, setPrompt] = useState("Fuzzy polar bear plushie sleeping in a minimalist modern apartment bed")
     const [images, setImages] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState(false)
@@ -38,7 +38,7 @@ export default function ImageFX() {
 
     return (
         <div className="min-h-screen bg-background text-foreground p-4">
-            <h1 className="text-2xl font-bold mb-4">ImageFX</h1>
+            <h1 className="text-2xl font-bold mb-4">BannerCraft</h1>
             <div className="flex flex-col md:flex-row gap-4">
                 <div className="w-full md:w-1/2">
                     <form onSubmit={handleSubmit} className="space-y-4">
