@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+[Demo video](https://drive.google.com/file/d/1RpR00oyNTcG5PtfLuyuoWugM8Do5crxD/view?usp=sharing)
 
-## Getting Started
+BannerCraft is an AI-powered platform revolutionizing how businesses create promotional banners. By utilizing Google's Gemini 1.5 Pro and Imagen3, BannerCraft provides a seamless, cost-effective solution for generating professional-quality visual promotions quickly.
+BannerCraft addresses a key challenge: the time and cost involved in traditional banner design. It empowers users to produce high-quality banners without needing expensive software or professional designers.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How BannerCraft Works:
+1. User Input: Users upload product images and input promotional details, such as audience, brand guidelines, and campaign goals.
+2. AI-Powered Prompt Generation: Gemini 1.5 Pro generates prompts that reflect the product and message accurately.
+3. Image Generation: Imagen3 creates high-quality banner images based on these prompts.
+4. Customization and Editing: Users can edit banners with tools for text addition, inpainting, color palette adjustment, and more.
+5. Output Optimization: Final banners are customized for size, resolution, and format for different marketing channels.
+6. BannerCraft evolves through user feedback, continuously improving banner quality and personalization. It's a creative partner for businesses, suitable for e-commerce, social media, and digital marketing. Future enhancements include video generation, platform integration, and AI-driven optimization, positioning BannerCraft as a leader in AI-based design solutions.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Challenges We Faced
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prompt Engineering for Gemini 1.5 Pro
+A key challenge was fine-tuning prompts for Gemini 1.5 Pro to generate high-quality, contextually relevant banner descriptions. Initially, our prompts resulted in generic or misaligned outputs. We addressed this by implementing a structured prompt template, adding specific details about product placement, lighting, and themes, and using few-shot learning with successful examples. This iterative process significantly improved the quality and relevance of our generated content.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Integration with Imagen3 API
+Handling rate limits and optimizing response times with the Imagen3 API was another challenge. We resolved this by implementing an efficient queuing system to manage requests, caching frequently used elements to reduce API calls, and developing a fallback mechanism for API downtimes. These measures improved the speed and reliability of banner generation.
 
-## Learn More
+### Image Editing Performance
+Our initial image editor, particularly the inpainting feature, was computationally intensive, causing performance issues on lower-end devices. We optimized our algorithms for efficiency, implemented progressive loading for high-resolution edits, and added client-side caching of edit history to reduce server load. These optimizations led to a smoother editing experience across all devices.
 
-To learn more about Next.js, take a look at the following resources:
+## PS
+#9. BigBasket
+  ### How does this project fit within the track?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Our project solves the challenge of high-quality banner creation through:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. AI-Powered Prompt Generation: Using Gemini 1.5 Pro for relevant prompts.
+2. High-Quality Banner Creation: Leveraging Imagen3 for banners with integrated product images and themes.
+3. Advanced Editing: Providing customization, inpainting, and text addition.
 
-## Deploy on Vercel
+### Why GenAI is the Best Solution:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Scalable Content Creation: Rapid generation of creative designs.
+2. Customization: Adapts to specific campaign needs.
+   
+### Challenges:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Prompt Engineering: Addressed with structured templates and few-shot learning.
+2. API Integration: Managed rate limits with queuing, caching, and fallback mechanisms.
+3. Performance: Optimized algorithms and added client-side caching for smoother editing.
