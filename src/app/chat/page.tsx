@@ -2,14 +2,21 @@
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Edit2, Loader2 } from 'lucide-react'
-import { useState } from 'react'
+import { Edit2, Loader2, Upload } from 'lucide-react'
+import { useRef, useState } from 'react'
 
 export default function ImageFX() {
     const [prompt, setPrompt] = useState("Fuzzy polar bear plushie sleeping in a minimalist modern apartment bed")
     const [images, setImages] = useState<string[]>([])
+    const [uploadedImages, setUploadedImages] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState(false)
+    const [colorPalette, setColorPalette] = useState<string[]>(['#FFFFFF', '#000000', '#FF0000', '#00FF00', '#0000FF'])
+    const [theme, setTheme] = useState('modern')
+    const fileInputRef = useRef<HTMLInputElement>(null)
+    const [apiKey, setApiKey] = useState('')
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -17,6 +24,10 @@ export default function ImageFX() {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 3000))
         const generatedImages = Array(4).fill('').map((_, i) => `/placeholder.svg?height=512&width=512&text=Generated+Image+${i + 1}`)
+        generatedImages[0] = 'i1.jpeg'
+        generatedImages[1] = 'i2.jpeg'
+        generatedImages[2] = 'i3.jpeg'
+        generatedImages[3] = 'i4.jpeg'
         setImages(generatedImages)
         setIsLoading(false)
     }
@@ -27,6 +38,10 @@ export default function ImageFX() {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 3000))
         const generatedImages = Array(4).fill('').map((_, i) => `/placeholder.svg?height=512&width=512&text=Lucky+Image+${i + 1}`)
+        generatedImages[0] = 'i1.jpeg'
+        generatedImages[1] = 'i2.jpeg'
+        generatedImages[2] = 'i3.jpeg'
+        generatedImages[3] = 'i4.jpeg'
         setImages(generatedImages)
         setIsLoading(false)
     }
@@ -36,18 +51,106 @@ export default function ImageFX() {
         window.open(editorUrl, '_blank')
     }
 
+    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files
+        if (files) {
+            const newUploadedImages = Array.from(files).map(file => URL.createObjectURL(file))
+            setUploadedImages(prev => [...prev, ...newUploadedImages])
+        }
+    }
+
+    const handleColorChange = (index: number, color: string) => {
+        setColorPalette(prev => {
+            const newPalette = [...prev]
+            newPalette[index] = color
+            return newPalette
+        })
+    }
+
     return (
         <div className="min-h-screen bg-background text-foreground p-4">
             <h1 className="text-2xl font-bold mb-4">ImageFX</h1>
             <div className="flex flex-col md:flex-row gap-4">
                 <div className="w-full md:w-1/2">
                     <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                            <Label htmlFor="image-upload">Upload Images</Label>
+                            <div className="flex items-center gap-2">
+                                <Input
+                                    id="image-upload"
+                                    type="file"
+                                    accept="image/*"
+                                    multiple
+                                    onChange={handleImageUpload}
+                                    className="hidden"
+                                    ref={fileInputRef}
+                                />
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    onClick={() => fileInputRef.current?.click()}
+                                >
+                                    <Upload className="w-4 h-4 mr-2" />
+                                    Upload Images
+                                </Button>
+                            </div>
+                            <div className="grid grid-cols-2 gap-2 mt-2">
+                                {uploadedImages.map((img, index) => (
+                                    <img key={index} src={img} alt={`Uploaded image ${index + 1}`} className="w-full h-32 object-cover rounded" />
+                                ))}
+                            </div>
+                        </div>
+                        <div>
+                            <Label htmlFor="color-palette">Color Palette</Label>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 mt-2">
+                                {colorPalette.map((color, index) => (
+                                    <div key={index} className="flex items-center gap-2">
+                                        <Input
+                                            type="text"
+                                            value={color}
+                                            onChange={(e) => handleColorChange(index, e.target.value)}
+                                            className="w-full"
+                                            placeholder="#RRGGBB or RGB"
+                                        />
+                                        <div
+                                            className="w-8 h-8 rounded-full border border-gray-300"
+                                            style={{ backgroundColor: color }}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div>
+                            <Label htmlFor="theme">Theme</Label>
+                            <Input
+                                id="theme"
+                                type="text"
+                                value={theme}
+                                onChange={(e) => setTheme(e.target.value)}
+                                className="w-full"
+                                placeholder="Enter a theme (e.g., modern, vintage, minimalist)"
+                            />
+                        </div>
                         <Textarea
                             value={prompt}
                             onChange={(e) => setPrompt(e.target.value)}
                             className="w-full h-32"
                             placeholder="Enter your image prompt here..."
                         />
+                        <div>
+                            {/* api key input area */}
+                            <div>
+                                <Label htmlFor="api-key">API Key</Label>
+                                <Input
+                                    id="api-key"
+                                    type="password" // Changed to password type for hidden input
+                                    value={apiKey} // Add state for apiKey
+                                    onChange={(e) => setApiKey(e.target.value)} // Add setApiKey function
+                                    className="w-full"
+                                    placeholder="Enter your API key"
+                                />
+                            </div>
+                        </div>
                         <div className="flex items-center gap-2">
                             <Button type="submit" disabled={isLoading}>
                                 {isLoading ? (
