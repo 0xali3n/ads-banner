@@ -9,6 +9,8 @@ import { Toast } from "@/components/ui/toast"
 import { Toaster } from "@/components/ui/toaster"
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 export default function Component() {
   const [apiKey, setApiKey] = useState('')
@@ -27,12 +29,18 @@ export default function Component() {
     })
   }
 
+  // const router = useRouter();
+
+  const {data: session} = useSession()
+
+
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen w-screen">
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <Link className="flex items-center justify-center" href="#">
           {/* <MountainIcon className="h-6 w-6" /> */}
-          <span className="sr-only">BannerC wraft</span>
+          <span className="sr-only">Banner Kraft</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="#features">
@@ -41,13 +49,13 @@ export default function Component() {
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="#pricing">
             Pricing
           </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/chat">
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href={session ? "/chat" : "/auth"}>
             Get Started
           </Link>
         </nav>
       </header>
-      <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+      <main className="flex flex-col w-screen items-center">
+        <section className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
@@ -75,7 +83,7 @@ export default function Component() {
             </div>
           </div>
         </section>
-        <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section id="features" className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Features</h2>
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-12">
@@ -106,7 +114,7 @@ export default function Component() {
             </div>
           </div>
         </section>
-        <section id="pricing" className="w-full py-12 md:py-24 lg:py-32">
+        <section id="pricing" className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Pricing</h2>
             <Tabs defaultValue="monthly" className="w-full max-w-3xl mx-auto">
@@ -227,7 +235,7 @@ export default function Component() {
             </Tabs>
           </div>
         </section>
-        <section id="api" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section id="api" className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">API Access</h2>
             <div className="max-w-md mx-auto space-y-4">
