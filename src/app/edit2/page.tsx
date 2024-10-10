@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import Chatbot from '@/components/chatbot'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import FilerobotImageEditor, { TABS, TOOLS } from 'react-filerobot-image-editor'
@@ -34,62 +35,67 @@ export default function EditPage() {
     }
 
     return (
-        <div className="w-full h-screen">
-            <FilerobotImageEditor
-                source={imageUrl}
-                onSave={handleSave}
-                onClose={() => window.close()}
-                annotationsCommon={{
-                    fill: '#ff0000',
-                }}
-                Text={{ text: 'Text here' }}
-                Rotate={{ angle: 90, componentType: 'slider' }}
-                Crop={{
-                    presetsItems: [
-                        {
-                            titleKey: 'classicTv',
-                            descriptionKey: '4:3',
-                            ratio: 4 / 3,
-                            icon: 'crop-4-3',
-                        },
-                        {
-                            titleKey: 'widescreenTv',
-                            descriptionKey: '16:9',
-                            ratio: 16 / 9,
-                            icon: 'crop-16-9',
-                        },
-                    ],
-                    presetsFolders: [
-                        {
-                            titleKey: 'socialMedia',
-                            groups: [
-                                {
-                                    titleKey: 'facebook',
-                                    items: [
-                                        {
-                                            titleKey: 'profile',
-                                            width: 180,
-                                            height: 180,
-                                            descriptionKey: 'fbProfileSize',
-                                        },
-                                        {
-                                            titleKey: 'coverPhoto',
-                                            width: 820,
-                                            height: 312,
-                                            descriptionKey: 'fbCoverPhotoSize',
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                }}
-                tabsIds={[TABS.ADJUST, TABS.ANNOTATE, TABS.WATERMARK]}
-                defaultTabId={TABS.ANNOTATE}
-                defaultToolId={TOOLS.TEXT}
-                savingPixelRatio={0}
-                previewPixelRatio={0}
-            />
+        <div className='flex'>
+            <div className="w-2/3 h-screen">
+                <FilerobotImageEditor
+                    source={imageUrl}
+                    onSave={handleSave}
+                    onClose={() => window.close()}
+                    annotationsCommon={{
+                        fill: '#ff0000',
+                    }}
+                    Text={{ text: 'Text here' }}
+                    Rotate={{ angle: 90, componentType: 'slider' }}
+                    Crop={{
+                        presetsItems: [
+                            {
+                                titleKey: 'classicTv',
+                                descriptionKey: '4:3',
+                                ratio: 4 / 3,
+                                icon: 'crop-4-3',
+                            },
+                            {
+                                titleKey: 'widescreenTv',
+                                descriptionKey: '16:9',
+                                ratio: 16 / 9,
+                                icon: 'crop-16-9',
+                            },
+                        ],
+                        presetsFolders: [
+                            {
+                                titleKey: 'socialMedia',
+                                groups: [
+                                    {
+                                        titleKey: 'facebook',
+                                        items: [
+                                            {
+                                                titleKey: 'profile',
+                                                width: 180,
+                                                height: 180,
+                                                descriptionKey: 'fbProfileSize',
+                                            },
+                                            {
+                                                titleKey: 'coverPhoto',
+                                                width: 820,
+                                                height: 312,
+                                                descriptionKey: 'fbCoverPhotoSize',
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                        ],
+                    }}
+                    tabsIds={[TABS.ADJUST, TABS.ANNOTATE, TABS.WATERMARK]}
+                    defaultTabId={TABS.ANNOTATE}
+                    defaultToolId={TOOLS.TEXT}
+                    savingPixelRatio={0}
+                    previewPixelRatio={0}
+                />
+            </div>
+            <div className='w-1/3'>
+                <Chatbot />
+            </div>
         </div>
     )
 }
