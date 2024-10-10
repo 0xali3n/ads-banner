@@ -11,21 +11,6 @@ import axios from 'axios'
 import { Download, Plus, Send } from 'lucide-react'
 import { useState } from 'react'
 
-// Simulated API call
-const simulateApiResponse = async (message: string, isImageGeneration: boolean) => {
-    await new Promise(resolve => setTimeout(resolve, 3000)) // Simulate API delay
-    if (isImageGeneration) {
-        return {
-            text: "Here's the generated image based on your prompt.",
-            img: "/adder-images/i4.jpeg" // Placeholder image URL
-        }
-    } else {
-        return {
-            text: `AI response to: "${message}"`,
-            img: null
-        }
-    }
-}
 
 type Message = {
     role: 'user' | 'ai'
@@ -49,7 +34,7 @@ export default function Chatbot() {
 
         try {
             // const { status, data: body } = await axios.post('/api/chatbot', { message: input, isImageGeneration, messages })
-            const body = await simulateApiResponse(input, isImageGeneration);
+            const body = await ApiResponse(input, isImageGeneration);
             // console.log(body)
             const aiMessage: Message = {
                 role: 'ai',
