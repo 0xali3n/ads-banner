@@ -30,10 +30,6 @@ export default function EditPage() {
         }
     }
 
-    const imageList = [
-        '/plantastic-generated (4) - boxes.jpeg',
-        '/plantastic-generated (4) - fix.png',
-    ]
     const openModal = () => {
         setIsModalOpen(true)
         setCurrentImage(1)

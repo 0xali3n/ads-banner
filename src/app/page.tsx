@@ -1,39 +1,41 @@
-"use client"
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Label } from "@/components/ui/label"
-import { Toast } from "@/components/ui/toast"
-import { Toaster } from "@/components/ui/toaster"
-import { useToast } from "@/hooks/use-toast"
-import Link from "next/link"
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/router'
+"use client";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Label } from "@/components/ui/label";
+import { Toast } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/hooks/use-toast";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { generateAPIToken } from "@/lib/generage-api-token";
 
 export default function Component() {
-  const [apiKey, setApiKey] = useState('')
-  const { toast } = useToast()
+  const [apiKey, setApiKey] = useState("");
+  const { toast } = useToast<{ message: string }>();
+
+  const api_hash = generateAPIToken("email", "username");
 
   const generateApiKey = () => {
-    // Simulate API key generation
-    const newApiKey = 'BK_' + Math.random().toString(36).substr(2, 9)
-    setApiKey(newApiKey)
-
-    // Simulate API call
-    console.log('API call made with key:', newApiKey)
+    setApiKey(api_hash);
     toast({
-      title: "API Key Generated",
-      description: `Your new API key is: ${newApiKey}. An API call has been simulated.`,
-    })
-  }
-
+      type: "foreground",
+      message: "API key generated successfully.",
+    });
+  };
   // const router = useRouter();
 
-  const {data: session} = useSession()
-
-
+  const { data: session } = useSession();
 
   return (
     <div className="flex flex-col min-h-screen w-screen">
@@ -43,13 +45,22 @@ export default function Component() {
           <span className="sr-only">Banner Kraft</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#features">
+          <Link
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#features"
+          >
             Features
           </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#pricing">
+          <Link
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href="#pricing"
+          >
             Pricing
           </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href={session ? "/chat" : "/auth"}>
+          <Link
+            className="text-sm font-medium hover:underline underline-offset-4"
+            href={session ? "/chat" : "/auth"}
+          >
             Get Started
           </Link>
         </nav>
@@ -63,7 +74,8 @@ export default function Component() {
                   Banner Kraft
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Generate stunning banners for your products with our AI-powered solution.
+                  Generate stunning banners for your products with our
+                  AI-powered solution.
                 </p>
               </div>
               <div className="space-x-4">
@@ -83,16 +95,23 @@ export default function Component() {
             </div>
           </div>
         </section>
-        <section id="features" className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section
+          id="features"
+          className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
+        >
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Features</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+              Features
+            </h2>
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-12">
               <Card>
                 <CardHeader>
                   <CardTitle>AI-Powered Design</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Create eye-catching banners with our advanced AI algorithms.</p>
+                  <p>
+                    Create eye-catching banners with our advanced AI algorithms.
+                  </p>
                 </CardContent>
               </Card>
               <Card>
@@ -100,7 +119,9 @@ export default function Component() {
                   <CardTitle>Brand Consistency</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Maintain your brand identity across all generated banners.</p>
+                  <p>
+                    Maintain your brand identity across all generated banners.
+                  </p>
                 </CardContent>
               </Card>
               <Card>
@@ -108,15 +129,23 @@ export default function Component() {
                   <CardTitle>Customization</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>Easily adjust and fine-tune generated banners to your liking.</p>
+                  <p>
+                    Easily adjust and fine-tune generated banners to your
+                    liking.
+                  </p>
                 </CardContent>
               </Card>
             </div>
           </div>
         </section>
-        <section id="pricing" className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32">
+        <section
+          id="pricing"
+          className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32"
+        >
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Pricing</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+              Pricing
+            </h2>
             <Tabs defaultValue="monthly" className="w-full max-w-3xl mx-auto">
               <TabsList className="grid w-full grid-cols-2 mb-8">
                 <TabsTrigger value="monthly">Monthly</TabsTrigger>
@@ -235,21 +264,35 @@ export default function Component() {
             </Tabs>
           </div>
         </section>
-        <section id="api" className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section
+          id="api"
+          className="flex flex-col items-center w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800"
+        >
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">API Access</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">
+              API Access
+            </h2>
             <div className="max-w-md mx-auto space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="api-key">Your API Key</Label>
-                <Input id="api-key" placeholder="Generate an API key" value={apiKey} readOnly />
+                <Input
+                  id="api-key"
+                  placeholder="Generate an API key"
+                  value={apiKey}
+                  readOnly
+                />
               </div>
-              <Button onClick={generateApiKey} className="w-full">Generate API Key</Button>
+              <Button onClick={generateApiKey} className="w-full">
+                Generate API Key
+              </Button>
             </div>
           </div>
         </section>
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Banner Kraft. All rights reserved.</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          © 2024 Banner Kraft. All rights reserved.
+        </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link className="text-xs hover:underline underline-offset-4" href="#">
             Terms of Service
@@ -261,5 +304,5 @@ export default function Component() {
       </footer>
       <Toaster />
     </div>
-  )
+  );
 }

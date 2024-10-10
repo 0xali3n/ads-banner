@@ -26,40 +26,13 @@ export default function BannerCraft() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         setIsLoading(true)
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 3000))
-        const generatedImages = Array(4).fill('').map((_, i) => `/placeholder.svg?height=512&width=512&text=Generated+Image+${i + 1}`)
-        generatedImages[0] = 'plantastic-generated (1).png'
-        generatedImages[1] = 'plantastic-generated (2).png'
-        generatedImages[2] = 'plantastic-generated (3).png'
-        generatedImages[3] = 'plantastic-generated (4).png'
-
-        // generatedImages[0] = 'plantastic-generated(1).png'
-        // generatedImages[0] = 'plantastic-generated(2).png'
-        // generatedImages[0] = 'plantastic-generated(3).png'
-        // generatedImages[0] = 'plantastic-generated(4).png'
-
-        setImages(generatedImages)
-        setIsLoading(false)
-        setTokensConsumed(prev => prev + getRandomInt(100, 500))
+    
     }
 
     const handleLucky = async () => {
         setPrompt("Surprise me with a random image!")
         setIsLoading(true)
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 3000))
-        const generatedImages = Array(4).fill('').map((_, i) => `/placeholder.svg?height=512&width=512&text=Lucky+Image+${i + 1}`)
-        generatedImages[0] = 'nestleind1.jpg'
-        generatedImages[1] = 'i2.jpeg'
-        generatedImages[2] = 'i3.jpeg'
-        generatedImages[3] = 'i4.jpeg'
-
-        // generatedImages[0] = 'plantastic-generated(1).png'
-        // generatedImages[0] = 'plantastic-generated(2).png'
-        // generatedImages[0] = 'plantastic-generated(3).png'
-        // generatedImages[0] = 'plantastic-generated(4).png'
-        setImages(generatedImages)
+        
         setIsLoading(false)
     }
 
@@ -73,6 +46,7 @@ export default function BannerCraft() {
         if (files) {
             const newUploadedImages = Array.from(files).map(file => URL.createObjectURL(file))
             setUploadedImages(prev => [...prev, ...newUploadedImages])
+
         }
     }
 
