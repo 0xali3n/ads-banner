@@ -13,11 +13,11 @@ import { useState } from 'react'
 
 // Simulated API call
 const simulateApiResponse = async (message: string, isImageGeneration: boolean) => {
-    await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 3000)) // Simulate API delay
     if (isImageGeneration) {
         return {
             text: "Here's the generated image based on your prompt.",
-            img: "https://picsum.photos/400/300" // Placeholder image URL
+            img: "/adder-images/i4.jpeg" // Placeholder image URL
         }
     } else {
         return {
@@ -48,12 +48,13 @@ export default function Chatbot() {
         setIsLoading(true)
 
         try {
-            const { status, data: body } = await axios.post('/api/chatbot', { message: input, isImageGeneration, messages })
-            console.log(body)
+            // const { status, data: body } = await axios.post('/api/chatbot', { message: input, isImageGeneration, messages })
+            const body = await simulateApiResponse(input, isImageGeneration);
+            // console.log(body)
             const aiMessage: Message = {
                 role: 'ai',
-                content: body.body,
-                image: body.image || ""
+                content: body.text,
+                image: body.img || ""
             }
             setMessages(prev => [...prev, aiMessage])
         } catch (error) {

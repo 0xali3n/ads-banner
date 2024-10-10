@@ -29,10 +29,15 @@ export default function BannerCraft() {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 3000))
         const generatedImages = Array(4).fill('').map((_, i) => `/placeholder.svg?height=512&width=512&text=Generated+Image+${i + 1}`)
-        generatedImages[0] = 'nestleind1.jpg'
-        generatedImages[1] = 'nestleind2.jpg'
-        generatedImages[2] = 'nestleind3.jpg'
-        generatedImages[3] = 'nestleind4.jpg'
+        generatedImages[0] = 'plantastic-generated (1).png'
+        generatedImages[1] = 'plantastic-generated (2).png'
+        generatedImages[2] = 'plantastic-generated (3).png'
+        generatedImages[3] = 'plantastic-generated (4).png'
+
+        // generatedImages[0] = 'plantastic-generated(1).png'
+        // generatedImages[0] = 'plantastic-generated(2).png'
+        // generatedImages[0] = 'plantastic-generated(3).png'
+        // generatedImages[0] = 'plantastic-generated(4).png'
 
         setImages(generatedImages)
         setIsLoading(false)
@@ -49,6 +54,11 @@ export default function BannerCraft() {
         generatedImages[1] = 'i2.jpeg'
         generatedImages[2] = 'i3.jpeg'
         generatedImages[3] = 'i4.jpeg'
+
+        // generatedImages[0] = 'plantastic-generated(1).png'
+        // generatedImages[0] = 'plantastic-generated(2).png'
+        // generatedImages[0] = 'plantastic-generated(3).png'
+        // generatedImages[0] = 'plantastic-generated(4).png'
         setImages(generatedImages)
         setIsLoading(false)
     }
@@ -89,7 +99,7 @@ export default function BannerCraft() {
                                     accept="image/*"
                                     multiple
                                     onChange={handleImageUpload}
-                                    className="hidden"
+                                    className="hidden rounded-full"
                                     ref={fileInputRef}
                                 />
                                 <Button
@@ -113,16 +123,15 @@ export default function BannerCraft() {
                                 {colorPalette.map((color, index) => (
                                     <div key={index} className="flex items-center gap-2">
                                         <Input
-                                            type="text"
+                                            type="color"
                                             value={color}
                                             onChange={(e) => handleColorChange(index, e.target.value)}
-                                            className="w-full"
+                                            className="w-[35%]"
                                             placeholder="#RRGGBB or RGB"
                                         />
                                         <div
-                                            className="w-8 h-8 rounded-full border border-gray-300"
-                                            style={{ backgroundColor: color }}
-                                        />
+                                            className="w-auto p-1 px-2 bg-gray-100 flex items-center justify-center text-sm h-6 rounded-full border border-gray-300"
+                                        >{color}</div>
                                     </div>
                                 ))}
                             </div>
