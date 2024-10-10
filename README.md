@@ -1,45 +1,83 @@
 [Demo video](https://drive.google.com/file/d/1RpR00oyNTcG5PtfLuyuoWugM8Do5crxD/view?usp=sharing)
 
-BannerCraft is an AI-powered platform revolutionizing how businesses create promotional banners. By utilizing Google's Gemini 1.5 Pro and Imagen3, BannerCraft provides a seamless, cost-effective solution for generating professional-quality visual promotions quickly.
-BannerCraft addresses a key challenge: the time and cost involved in traditional banner design. It empowers users to produce high-quality banners without needing expensive software or professional designers.
+Backend repo - https://github.com/SohamRatnaparkhi/gen-ai-hacks-backend
+
+# BannerCraft - AI-Powered Custom Banner Creation Platform
 
 
-## How BannerCraft Works:
-1. User Input: Users upload product images and input promotional details, such as audience, brand guidelines, and campaign goals.
-2. AI-Powered Prompt Generation: Gemini 1.5 Pro generates prompts that reflect the product and message accurately.
-3. Image Generation: Imagen3 creates high-quality banner images based on these prompts.
-4. Customization and Editing: Users can edit banners with tools for text addition, inpainting, color palette adjustment, and more.
-5. Output Optimization: Final banners are customized for size, resolution, and format for different marketing channels.
-6. BannerCraft evolves through user feedback, continuously improving banner quality and personalization. It's a creative partner for businesses, suitable for e-commerce, social media, and digital marketing. Future enhancements include video generation, platform integration, and AI-driven optimization, positioning BannerCraft as a leader in AI-based design solutions.
 
-## Challenges We Faced
+## Overview
 
-### Prompt Engineering for Gemini 1.5 Pro
-A key challenge was fine-tuning prompts for Gemini 1.5 Pro to generate high-quality, contextually relevant banner descriptions. Initially, our prompts resulted in generic or misaligned outputs. We addressed this by implementing a structured prompt template, adding specific details about product placement, lighting, and themes, and using few-shot learning with successful examples. This iterative process significantly improved the quality and relevance of our generated content.
+Welcome to the **AI-Powered Custom Banner Creation Platform**, a cutting-edge solution for creating high-quality, customizable advertisement banners using advanced AI technologies. This platform is designed to streamline the design process, enabling users to generate stunning banners tailored to their specific marketing needs.
 
-### Integration with Imagen3 API
-Handling rate limits and optimizing response times with the Imagen3 API was another challenge. We resolved this by implementing an efficient queuing system to manage requests, caching frequently used elements to reduce API calls, and developing a fallback mechanism for API downtimes. These measures improved the speed and reliability of banner generation.
+## Key Features
 
-### Image Editing Performance
-Our initial image editor, particularly the inpainting feature, was computationally intensive, causing performance issues on lower-end devices. We optimized our algorithms for efficiency, implemented progressive loading for high-resolution edits, and added client-side caching of edit history to reduce server load. These optimizations led to a smoother editing experience across all devices.
+### 1. AI-Driven Prompt & Banner Creation
+- Powered by **Gemini** for generating contextually relevant prompts.
+- Users can upload product images and select color palettes, themes, and design elements.
+- **Imagen3** generates creative banners by integrating AI-generated visuals with user-uploaded assets.
 
-## PS
-#9. BigBasket
-  ### How does this project fit within the track?
+### 2. Comprehensive Editing Suite
+- **Professional Tools**: Edit text, shapes, freehand drawing, inpainting, watermarking, and more.
+- **Seamless AI Integration**: Easily customize AI-generated elements alongside user-provided images.
+- **Chatbot Integration**: Generate text and sticker-like visuals for quick banner personalization.
 
-Our project solves the challenge of high-quality banner creation through:
+### 3. Spelling Accuracy & Image Precision
+- **Bounding Box Technology**: Ensures 100% spelling accuracy in banners by replacing AI-generated product images with originals.
+- **Computer Vision**: Enhances image precision and accuracy by aligning AI-generated visuals with user expectations.
 
-1. AI-Powered Prompt Generation: Using Gemini 1.5 Pro for relevant prompts.
-2. High-Quality Banner Creation: Leveraging Imagen3 for banners with integrated product images and themes.
-3. Advanced Editing: Providing customization, inpainting, and text addition.
+### 4. Optimized Performance
+- **Prompt Engineering**: Structured templates and few-shot learning improve AI prompt generation.
+- **API Management**: Features queuing, caching, and fallback mechanisms for efficient API utilization.
+- **Client-Side Caching**: Ensures smooth and responsive editing, even with large banner projects.
 
-### Why GenAI is the Best Solution:
+## Advantages
 
-1. Scalable Content Creation: Rapid generation of creative designs.
-2. Customization: Adapts to specific campaign needs.
-   
-### Challenges:
+- **Scalable Content Production**: Generate fully customizable and creative banners rapidly.
+- **Tailored Campaigns**: Easily adapt designs to meet specific marketing requirements with AI-assisted generation.
+  
+## Challenges Addressed
 
-1. Prompt Engineering: Addressed with structured templates and few-shot learning.
-2. API Integration: Managed rate limits with queuing, caching, and fallback mechanisms.
-3. Performance: Optimized algorithms and added client-side caching for smoother editing.
+- **Improved Prompt Engineering**: Use of structured templates for better contextual prompts.
+- **API Rate Limit Handling**: Queuing and caching mechanisms to manage API limits efficiently.
+- **Image Accuracy**: Guaranteed precision through automatic replacement of AI-generated product images with user-provided originals.
+
+## Future Opportunities
+
+- **Premium Subscription Plan**: 
+  - Multi-language support for global markets.
+  - Custom fine-tuned models tailored to individual user needs.
+  
+- **Enhanced AI Capabilities**: 
+  - Further advancements in prompt generation for diverse and creative outputs.
+  - Advanced image manipulation tools.
+
+- **Collaboration & Analytics**: 
+  - Team-based editing and approval workflows.
+  - Performance tracking and AI-driven insights to optimize banner designs.
+
+## Getting Started
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/ai-banner-platform.git
+   ```
+2. **Install dependencies**:
+   ```bash
+   cd ai-banner-platform
+   npm install
+   ```
+3. **Run the application**:
+   ```bash
+   npm start
+   ```
+
+## Contributing
+
+We welcome contributions! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+
+1. Fork the project
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request
