@@ -33,8 +33,9 @@ export default function Chatbot() {
         setIsLoading(true)
 
         try {
-            // const { status, data: body } = await axios.post('/api/chatbot', { message: input, isImageGeneration, messages })
-            const body = await ApiResponse(input, isImageGeneration);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { status, data: body } = await axios.post('/api/chatbot', { message: input, isImageGeneration, messages })
+            // const body = await ApiResponse(input, isImageGeneration);
             // console.log(body)
             const aiMessage: Message = {
                 role: 'ai',

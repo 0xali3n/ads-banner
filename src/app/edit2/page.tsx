@@ -1,11 +1,11 @@
 'use client'
 
 import Chatbot from '@/components/chatbot'
+import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import FilerobotImageEditor, { TABS, TOOLS } from 'react-filerobot-image-editor'
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
 
 export default function EditPage() {
     const searchParams = useSearchParams()
@@ -20,6 +20,7 @@ export default function EditPage() {
         }
     }, [searchParams])
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleSave = (editedImageObject: any) => {
         if (editedImageObject && editedImageObject.imageBase64) {
             const link = document.createElement('a')
