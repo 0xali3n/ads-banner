@@ -11,35 +11,42 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
   id Int @id @default(autoincrement())
   email String @unique
   name String?
-  company String
-  category String
+  company String?
+  category String?
+  api_key String
+  monthly_tokens Int @default(50)
   banners Banner[]
+  prompts Prompt[]
+
 }
 
 model Banner {
-  id Int @id 
+  id Int @id @default(autoincrement())
   title String
   description String?
   link String
-  author User @relations(fields: [authorId], references: [id])
+  author User @relation(fields: [authorId], references: [id])
   authorId Int
-  prompt Prompt @relations(fields: [promptId], references: [id])
+  prompt Prompt @relation(fields: [promptId], references: [id])
+  promptId Int
+  created_at DateTime @default(now())
 }
 
 model Prompt {
-  id Int @id
+  id Int @id @default(autoincrement())
   title String?
   description String?
   color_pallete String?
   theme String?
   eg_images String[]
-  author User @relations(fields: [authorId], references: [id])
+  author User @relation(fields: [authorId], references: [id])
   authorId Int
   banners Banner[]
 }
