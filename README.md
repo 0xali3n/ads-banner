@@ -1,8 +1,9 @@
-[Demo video](https://drive.google.com/file/d/1RpR00oyNTcG5PtfLuyuoWugM8Do5crxD/view?usp=sharing)
-
 Backend repo - https://github.com/SohamRatnaparkhi/gen-ai-hacks-backend
 
 # BannerCraft - AI-Powered Custom Banner Creation Platform
+
+
+https://github.com/user-attachments/assets/39c4364e-73dd-437c-a231-309bf540268c
 
 
 
