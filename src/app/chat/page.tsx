@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import axios from "axios"
 import { Edit2, Loader2, Upload } from 'lucide-react'
 import { useRef, useState } from 'react'
 
 export default function BannerCraft() {
     const [prompt, setPrompt] = useState("Fuzzy polar bear plushie sleeping in a minimalist modern apartment bed")
-    const [images, setImages] = useState<string[]>([])
+    const [images, setImages] = useState<string[]>([''])
     const [uploadedImages, setUploadedImages] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState(false)
     const [colorPalette, setColorPalette] = useState<string[]>(['#FFFFFF', '#000000', '#FF0000', '#00FF00', '#0000FF'])
@@ -26,13 +27,22 @@ export default function BannerCraft() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         setIsLoading(true)
-    
+        const { data } = await axios.post('/api/genr', {
+            userImgS3Links: uploadedImages,
+            userPrompt: prompt,
+            colorPallete: colorPalette,
+            theme: theme
+        })
+        console.log(data)
+        const imgs = data.body.images
+        setImages(imgs)
+        setIsLoading(false)
     }
 
     const handleLucky = async () => {
         setPrompt("Surprise me with a random image!")
         setIsLoading(true)
-        
+
         setIsLoading(false)
     }
 
@@ -41,15 +51,35 @@ export default function BannerCraft() {
         window.open(editorUrl, '_blank')
     }
 
-    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files
+    // const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const files = event.target.files
+    //     if (files) {
+    //         const newUploadedImages = Array.from(files).map(file => URL.createObjectURL(file))
+    //         setUploadedImages(prev => [...prev, ...newUploadedImages])
+
+    //     }
+    // }
+
+    const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
         if (files) {
-            const newUploadedImages = Array.from(files).map(file => URL.createObjectURL(file))
-            setUploadedImages(prev => [...prev, ...newUploadedImages])
+            const formData = new FormData();
+            Array.from(files).forEach((file) => {
+                formData.append('images', file);
+            });
 
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const data = await response.json();
+                setUploadedImages(prev => [...prev, ...data.urls]);
+            } catch (error) {
+                console.error('Error uploading images:', error);
+            }
         }
-    }
-
+    };
     const handleColorChange = (index: number, color: string) => {
         setColorPalette(prev => {
             const newPalette = [...prev]
