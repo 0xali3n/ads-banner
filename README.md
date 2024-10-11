@@ -74,6 +74,21 @@ Welcome to the **AI-Powered Custom Banner Creation Platform**, a cutting-edge so
    npm start
    ```
 
+## Results
+
+![510dbc42-6eb9-46b6-ae6c-dc02f693635c](https://github.com/user-attachments/assets/3197f8df-f691-48bc-95da-22dcf635ac59)
+
+![image_fx_](https://github.com/user-attachments/assets/d1d9aaa1-9264-437f-85e1-e21d16588a90)
+
+![edited-image](https://github.com/user-attachments/assets/a7298068-5352-42c3-8cca-2d20e643a57f)
+
+![edited-image (1)](https://github.com/user-attachments/assets/ad163e5e-9feb-4545-b1d7-0bbd3472a1be)
+
+![44189d62-ca33-4b70-90e9-e647e8631245](https://github.com/user-attachments/assets/c333fa87-b382-435e-b99b-1b45c27fa864)
+
+![edited-image (1)](https://github.com/user-attachments/assets/2bff9c4e-2eaa-4b93-ae7e-858131f84d2d)
+![image](https://github.com/user-attachments/assets/3c345afe-5231-458a-9e38-6fc7dbd555cf)
+
 ## Contributing
 
 We welcome contributions! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
