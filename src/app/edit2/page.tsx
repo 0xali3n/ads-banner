@@ -13,11 +13,29 @@ export default function EditPage() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [currentImage, setCurrentImage] = useState(1)
 
+    const getImageSavedPath = async (url: string) => {
+        const response = await fetch('/api/s3', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ url }),
+        })
+
+        const data = await response.json()
+        const path = data.filePath
+        console.log(data)
+        setImageUrl(decodeURIComponent(path.substring(6)))
+    }
+
     useEffect(() => {
-        const image = searchParams.get('image')
-        if (image) {
-            setImageUrl(decodeURIComponent(image))
+        const getImage = async () => {
+            const image = searchParams.get('image')
+            if (image) {
+                await getImageSavedPath(image)
+            }
         }
+        getImage()
     }, [searchParams])
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

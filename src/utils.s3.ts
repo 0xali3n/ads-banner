@@ -19,7 +19,7 @@ AWS.config.update({
 // Create an S3 client
 const s3 = new AWS.S3();
 
-class S3Operations {
+export class S3Operations {
     constructor() { }
 
     async getAllBucketNames(): Promise<string[]> {
