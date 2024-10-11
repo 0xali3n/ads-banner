@@ -24,6 +24,8 @@ export default function Chatbot() {
     const [isImageGeneration, setIsImageGeneration] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
+    console.log(messages)
+
     const handleSend = async () => {
         if (!input.trim()) return
 
@@ -36,13 +38,14 @@ export default function Chatbot() {
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { status, data: body } = await axios.post('/api/chatbot', { message: input, isImageGeneration, messages })
             // const body = await ApiResponse(input, isImageGeneration);
-            // console.log(body)
+            console.log(body)
             const aiMessage: Message = {
                 role: 'ai',
                 content: body.text,
-                image: body.img || ""
+                image: body.image
             }
             setMessages(prev => [...prev, aiMessage])
+            console.log(messages)
         } catch (error) {
             console.error('Error fetching response:', error)
         } finally {
