@@ -4,6 +4,8 @@ Youtube demo - [https://youtu.be/VMFF0kCGod4?si=5Z0Q5SvF-APeWGOr](https://youtu.
 
 Pitch Deck - [Banner Craft: Go-to solution for generating stunning, personalized banners in seconds!](https://www.canva.com/design/DAGTO_6eZkU/l5yub0k9rcIdPK527s-i-w/view?utm_content=DAGTO_6eZkU&utm_campaign=designshare&utm_medium=link&utm_source=editor)
 
+[Google's acknowledgement](https://x.com/GeminiApp/status/1880036630263747008?t=hgCItWysnHX1mc46Ap1uDw&s=19)
+
 # BannerCraft - AI-Powered Custom Banner Creation Platform
 
 
