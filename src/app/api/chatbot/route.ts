@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-const BACKEND_COMPLETION_URL = 'http://localhost:5000/chat-bot'
+const BACKEND_COMPLETION_URL = 'http://127.0.0.1:5000/chat-bot'
 
 export async function POST(request: NextRequest) {
     const { message, isImageGeneration, messages } = await request.json()

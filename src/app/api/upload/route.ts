@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
 
 const s3Client = new S3Client({
-    region: process.env.AWS_REGION_NAME as string,
+    region: process.env.AWS_REGION as string,
     credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
             const command = new PutObjectCommand(params);
             await s3Client.send(command);
 
-            return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION_NAME}.amazonaws.com/${fileName}`;
+            return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`;
         });
 
         const uploadedUrls = await Promise.all(uploadPromises);
